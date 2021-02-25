@@ -59,6 +59,7 @@ import org.openpnp.machine.reference.driver.NullMotionPlanner;
 import org.openpnp.machine.reference.driver.ReferenceAdvancedMotionPlanner;
 import org.openpnp.machine.reference.feeder.AdvancedLoosePartFeeder;
 import org.openpnp.machine.reference.feeder.BlindsFeeder;
+import org.openpnp.machine.reference.feeder.BlindsFeederAdvanced;
 import org.openpnp.machine.reference.feeder.ReferenceAutoFeeder;
 import org.openpnp.machine.reference.feeder.ReferenceDragFeeder;
 import org.openpnp.machine.reference.feeder.ReferenceLeverFeeder;
@@ -340,6 +341,7 @@ public class ReferenceMachine extends AbstractMachine {
         l.add(ReferenceLoosePartFeeder.class);
         l.add(AdvancedLoosePartFeeder.class);
         l.add(BlindsFeeder.class);
+        l.add(BlindsFeederAdvanced.class);
         l.add(SchultzFeeder.class);
         l.add(SlotSchultzFeeder.class);
         l.add(RapidFeeder.class);

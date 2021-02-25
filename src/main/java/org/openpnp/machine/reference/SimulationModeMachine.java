@@ -36,6 +36,7 @@ import org.openpnp.machine.reference.driver.NullDriver;
 import org.openpnp.machine.reference.driver.ReferenceDriverCommunications;
 import org.openpnp.machine.reference.driver.SimulatedCommunications;
 import org.openpnp.machine.reference.feeder.BlindsFeeder;
+import org.openpnp.machine.reference.feeder.BlindsFeederAdvanced;
 import org.openpnp.machine.reference.feeder.ReferenceStripFeeder;
 import org.openpnp.machine.reference.wizards.SimulationModeMachineConfigurationWizard;
 import org.openpnp.model.AxesLocation;
@@ -279,6 +280,9 @@ public class SimulationModeMachine extends ReferenceMachine {
             }
             if (feeder instanceof BlindsFeeder) {
                 ((BlindsFeeder) feeder).setFeedCount(0);
+            }
+            if (feeder instanceof BlindsFeederAdvanced) {
+                ((BlindsFeederAdvanced) feeder).setFeedCount(0);
             }
         }
     }
