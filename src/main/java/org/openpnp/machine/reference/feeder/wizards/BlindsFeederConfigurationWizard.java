@@ -119,6 +119,8 @@ public class BlindsFeederConfigurationWizard extends AbstractConfigurationWizard
     private JTextField textFieldPocketSize;
     private JLabel lblPocketCenterline;
     private JTextField textFieldPocketCenterline;
+    private JLabel lblPickOffset;
+    private JTextField textFieldPickOffset;
 
 
     public BlindsFeederConfigurationWizard(BlindsFeeder feeder) {
@@ -326,7 +328,15 @@ public class BlindsFeederConfigurationWizard extends AbstractConfigurationWizard
         panelTapeSettings.add(textFieldFeedersTotal, "10, 10");
         textFieldFeedersTotal.setEditable(false);
         textFieldFeedersTotal.setColumns(5);
-
+        
+	    lblPickOffset = new JLabel("Pick Offset");
+  		lblPickOffset.setToolTipText("Offset pick position allong the tape.");
+	    panelTapeSettings.add(lblPickOffset, "8, 12, right, default");
+	    
+	    textFieldPickOffset = new JTextField();
+        panelTapeSettings.add(textFieldPickOffset, "10, 12");
+        textFieldPickOffset.setColumns(5);
+	    
         lblFeedCount = new JLabel("Feed Count");
         panelTapeSettings.add(lblFeedCount, "2, 12, right, default");
 
@@ -595,6 +605,7 @@ public class BlindsFeederConfigurationWizard extends AbstractConfigurationWizard
         addWrappedBinding(feeder, "edgeClosedDistance", textFieldEdgeClosingDistance, "text", lengthConverter);
         addWrappedBinding(feeder, "pushSpeed", textFieldPushSpeed, "text", doubleConverter);
         addWrappedBinding(feeder, "pushZOffset", textFieldPushZOffset, "text", lengthConverter);
+        addWrappedBinding(feeder, "pickOffset", textFieldPickOffset, "text", lengthConverter);
 
         MutableLocationProxy fiducial1Location = new MutableLocationProxy();
         bind(UpdateStrategy.READ_WRITE, feeder, "fiducial1Location", fiducial1Location, "location");
@@ -629,6 +640,7 @@ public class BlindsFeederConfigurationWizard extends AbstractConfigurationWizard
         ComponentDecorators.decorateWithAutoSelectAndLengthConversion(textFieldEdgeClosingDistance);
         ComponentDecorators.decorateWithAutoSelect(textFieldPushSpeed);
         ComponentDecorators.decorateWithAutoSelectAndLengthConversion(textFieldPushZOffset);
+        ComponentDecorators.decorateWithAutoSelectAndLengthConversion(textFieldPickOffset);
         //ComponentDecorators.decorateWithAutoSelect(textFieldFirstPocket);
         //ComponentDecorators.decorateWithAutoSelect(textFieldLastPocket);
         ComponentDecorators.decorateWithAutoSelect(textFieldFeedCount);

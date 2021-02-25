@@ -148,6 +148,9 @@ public class BlindsFeeder extends ReferenceFeeder {
     @Element(required = false)
     private Length pushZOffset = new Length(0.25, LengthUnit.Millimeters); 
 
+    @Element(required = false)
+    private Length pickOffset = new Length(0, LengthUnit.Millimeters);
+
     @Attribute(required = false)
     private double pushSpeed = 0.025;
 
@@ -160,6 +163,7 @@ public class BlindsFeeder extends ReferenceFeeder {
 
     @Attribute(required = false)
     private double pocketPosToleranceMm = 0.1;
+
 
     // Transient state
     private Length coverPosition = new Length(Double.NaN, LengthUnit.Millimeters);
@@ -245,7 +249,7 @@ public class BlindsFeeder extends ReferenceFeeder {
     public Location getUncalibratedPickLocation(double pocketNumber)  {
         recalculateGeometry();
         // Calculate the pick location in local feeder coordinates. 
-        Length feederX = pocketPitch.multiply(pocketNumber-1.0).convertToUnits(location.getUnits()).add(pocketDistance);
+        Length feederX = pocketPitch.multiply(pocketNumber-1.0).convertToUnits(location.getUnits()).add(pocketDistance).add(pickOffset);
         Length feederY = pocketCenterline.convertToUnits(location.getUnits());
 
         Location feederLocation = new Location(location.getUnits(), feederX.getValue(), feederY.getValue(), 
@@ -2067,6 +2071,17 @@ public class BlindsFeeder extends ReferenceFeeder {
         firePropertyChange("pushZOffset", oldValue, pushZOffset);
     }
 
+    public Length getPickOffset() {
+        return pickOffset;
+    }
+
+    public void setPickOffset(Length pickOffset) {
+        Length oldValue = this.pickOffset;
+        this.pickOffset = pickOffset;
+        firePropertyChange("pickOffset", oldValue, pickOffset);
+    }
+    
+    
     public CoverType getCoverType() {
         return coverType;
     }
