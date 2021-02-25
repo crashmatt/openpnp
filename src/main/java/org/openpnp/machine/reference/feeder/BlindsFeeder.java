@@ -197,7 +197,7 @@ public class BlindsFeeder extends ReferenceFeeder {
         });
     }
 
-    private void recalculateGeometry() {
+    protected void recalculateGeometry() {
         // This geometry must match the 3D printed feeder. So this code must remain in sync with the OpenSCAD file. 
         // @see /openpnp/src/main/resources/org/openpnp/machine/reference/feeder/BlindsFeeder-Library.scad 
         // and search for "recalculateGeometry()". 
